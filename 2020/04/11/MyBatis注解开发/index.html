@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>MyBatis注解开发 - Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="技术笔记,人生感悟">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="添加简介: 在首页显示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis注解开发">
+<meta property="og:url" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="添加简介: 在首页显示">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91.assets/image-20200411163807710.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411172212951.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411192721360.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411195541014.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411195910802.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411204123590.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411210246670.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411215557453.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis注解开发.assets/image-20200411215649160.png">
+<meta property="article:published_time" content="2020-04-11T02:31:30.000Z">
+<meta property="article:modified_time" content="2020-08-10T12:01:09.215Z">
+<meta property="article:author" content="CloudInWind">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="MyBatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91.assets/image-20200411163807710.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1597147159865">
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3213207264,1556792350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="CloudInWind" class="mdui-btn mdui-btn-icon"><img src="https://s1.ax1x.com/2020/08/10/aH40yV.jpg" alt="CloudInWind"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="CloudInWind">
+            <img src="https://s1.ax1x.com/2020/08/10/aH40yV.jpg" alt="CloudInWind" alt="CloudInWind">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>5</div>
+        <div><span>标签</span>4</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=5CfKHun" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Java开发/">Java开发</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/blog/">blog</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 CloudInWind
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 62.5%;"> 
+          <img data-src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3355018414,1184144917&fm=26&gp=0.jpg" data-sizes="auto" alt="MyBatis注解开发" class="lazyload">
+          <h1>MyBatis注解开发</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年04月11日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 24 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <p>添加简介: 在首页显示</p>
+<a id="more"></a>
+
+<h2 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1. 创建项目"></a>1. 创建项目</h2><p>创建Maven工程  :  day04_eesy_03annotation_mybatis</p>
+<h2 id="2-在-pom-xml-文件中完成工程配置"><a href="#2-在-pom-xml-文件中完成工程配置" class="headerlink" title="2. 在 pom.xml 文件中完成工程配置"></a>2. 在 pom.xml 文件中完成工程配置</h2><p>pom.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;com.itheima&lt;/groupId&gt;
+    &lt;artifactId&gt;day04_eesy_03annotation_mybatis&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+            &lt;version&gt;3.5.3&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.6&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+            &lt;version&gt;1.2.17&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.13&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+&lt;/project&gt;</code></pre>
+<h2 id="3-完成环境配置"><a href="#3-完成环境配置" class="headerlink" title="3. 完成环境配置"></a>3. 完成环境配置</h2><h3 id="3-1-实体类创建"><a href="#3-1-实体类创建" class="headerlink" title="3.1 实体类创建"></a>3.1 实体类创建</h3><p>User.java</p>
+<pre><code class="java">package com.itheima.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class User implements Serializable &amp;#123;
+
+    private Integer id;
+
+    private String username;
+
+    private String address;
+
+    private String sex;
+
+    private Date birthday;
+
+    public Integer getId() &amp;#123;
+        return id;
+    &amp;#125;
+
+    public void setId(Integer id) &amp;#123;
+        this.id = id;
+    &amp;#125;
+
+    public String getUsername() &amp;#123;
+        return username;
+    &amp;#125;
+
+    public void setUsername(String username) &amp;#123;
+        this.username = username;
+    &amp;#125;
+
+    public String getAddress() &amp;#123;
+        return address;
+    &amp;#125;
+
+    public void setAddress(String address) &amp;#123;
+        this.address = address;
+    &amp;#125;
+
+    public String getSex() &amp;#123;
+        return sex;
+    &amp;#125;
+
+    public void setSex(String sex) &amp;#123;
+        this.sex = sex;
+    &amp;#125;
+
+    public Date getBirthday() &amp;#123;
+        return birthday;
+    &amp;#125;
+
+    public void setBirthday(Date birthday) &amp;#123;
+        this.birthday = birthday;
+    &amp;#125;
+
+    @Override
+    public String toString() &amp;#123;
+        return &quot;User&amp;#123;&quot; +
+                &quot;id=&quot; + id +
+                &quot;, username=&#39;&quot; + username + &#39;\&#39;&#39; +
+                &quot;, address=&#39;&quot; + address + &#39;\&#39;&#39; +
+                &quot;, sex=&#39;&quot; + sex + &#39;\&#39;&#39; +
+                &quot;, birthday=&quot; + birthday +
+                &#39;&amp;#125;&#39;;
+    &amp;#125;
+&amp;#125;
+</code></pre>
+<h3 id="3-2-与实体类对应的接口的创建"><a href="#3-2-与实体类对应的接口的创建" class="headerlink" title="3.2 与实体类对应的接口的创建"></a>3.2 与实体类对应的接口的创建</h3><p>IUserDao.java</p>
+<pre><code class="java">package com.itheima.dao;
+
+import com.itheima.domain.User;
+
+import java.util.List;
+
+public interface IUserDao &amp;#123;
+
+
+    List&lt;User&gt; findAll();   //查询所有用户
+
+&amp;#125;</code></pre>
+<h3 id="3-3-主配置文件"><a href="#3-3-主配置文件" class="headerlink" title="3.3 主配置文件"></a>3.3 主配置文件</h3><p>主配置文件SqlMapConfig.xml中进行环境配置</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+
+&lt;configuration&gt;
+
+    &lt;!--引入外部配置文件--&gt;
+    &lt;properties resource=&quot;jdbcConfig.properties&quot;&gt;&lt;/properties&gt;
+
+    &lt;!--配置别名--&gt;
+    &lt;typeAliases&gt;
+        &lt;package name=&quot;com.itheima.domain&quot;&gt;&lt;/package&gt;
+    &lt;/typeAliases&gt;
+
+    &lt;!--配置环境--&gt;
+    &lt;environments default=&quot;mysql&quot;&gt;
+        &lt;environment id=&quot;mysql&quot;&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+            &lt;dataSource type=&quot;POOLED&quot;&gt;
+
+                &lt;property name=&quot;driver&quot; value=&quot;$&amp;#123;driver&amp;#125;&quot;/&gt;
+                &lt;property name=&quot;url&quot; value=&quot;$&amp;#123;url&amp;#125;&quot;/&gt;
+                &lt;property name=&quot;username&quot; value=&quot;$&amp;#123;username&amp;#125;&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;$&amp;#123;password&amp;#125;&quot;/&gt;
+
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+
+    &lt;!--指定带有注解的dao接口所在位置--&gt;
+    &lt;mappers&gt;
+        &lt;package name=&quot;com.itheima.dao&quot;&gt;&lt;/package&gt;
+    &lt;/mappers&gt;
+
+&lt;/configuration&gt;</code></pre>
+<h3 id="3-4-外部配置文件"><a href="#3-4-外部配置文件" class="headerlink" title="3.4 外部配置文件"></a>3.4 外部配置文件</h3><p>外部配置文件jdbcConfig.properties中进行数据库相关配置, 为主配置文件SqlMapConfig.xml的引用做准备</p>
+<p>jdbcConfig.properties</p>
+<pre><code class="properties">driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://rm-bp1s8wez9j4hw42oemo.mysql.rds.aliyuncs.com:3306/dizi-01
+username=dizi
+password=Dizi1234</code></pre>
+<h3 id="3-5-配置完成后的目录结构"><a href="#3-5-配置完成后的目录结构" class="headerlink" title="3.5 配置完成后的目录结构"></a>3.5 配置完成后的目录结构</h3><p><img src="MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91.assets/image-20200411163807710.png"></p>
+<h2 id="4-进行注解开发"><a href="#4-进行注解开发" class="headerlink" title="4. 进行注解开发"></a>4. 进行注解开发</h2><h3 id="4-1-在IUserDao-java中进行注解开发"><a href="#4-1-在IUserDao-java中进行注解开发" class="headerlink" title="4.1 在IUserDao.java中进行注解开发"></a>4.1 在IUserDao.java中进行注解开发</h3><p>IUserDao.java</p>
+<pre><code class="java">package com.itheima.dao;
+
+import com.itheima.domain.User;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+//在MyBatis中针对CRUD一共有四个注释
+//@Select,@Insert,@Update,,@Delete
+
+public interface IUserDao &amp;#123;
+
+    @Select(&quot;select * from yangzhaohui_user&quot;)
+    List&lt;User&gt; findAll();   //查询所有用户
+
+&amp;#125;
+</code></pre>
+<h3 id="4-2-在测试类中进行测试"><a href="#4-2-在测试类中进行测试" class="headerlink" title="4.2 在测试类中进行测试"></a>4.2 在测试类中进行测试</h3><p>MybatisAnnoTest.java</p>
+<pre><code class="java">public class MybatisAnnoTest &amp;#123;
+
+    //测试基于注解的MyBatis使用
+
+    public static void main(String[] args) &amp;#123;
+
+        //1.获取字节输入流
+        try &amp;#123;
+            InputStream inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+            //2.根据字节输入流构建SqlSessionFactory
+            SqlSessionFactoryBuilder factoryBuilder = new SqlSessionFactoryBuilder();
+            SqlSessionFactory factory = factoryBuilder.build(inputStream);
+
+            //3.根据SqlSessionFactory生产一个SqlSession
+            SqlSession session = factory.openSession();
+
+            //4.使用SqlSession获取Dao代理对象
+            IUserDao userDao=session.getMapper(IUserDao.class);
+
+            //5.执行Dao方法
+            List&lt;User&gt; users=userDao.findAll();
+            for (User user : users)&amp;#123;
+                System.out.println(user);
+            &amp;#125;
+
+            session.close();
+            inputStream.close();
+        &amp;#125; catch (IOException e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+
+    &amp;#125;
+&amp;#125;</code></pre>
+<h3 id="4-3-运行结果"><a href="#4-3-运行结果" class="headerlink" title="4.3 运行结果"></a>4.3 运行结果</h3><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411172212951.png" alt="image-20200411172212951" class="lazyload">
+
+
+
+<h3 id="4-4-注意事项"><a href="#4-4-注意事项" class="headerlink" title="4.4 注意事项"></a>4.4 注意事项</h3><p>进行注解开发时,不能有IUserDao.xml配置文件, 即<strong>在注解中进行数据库操作</strong>和<strong>在xml文件中进行数据库操作</strong>不能同时存在</p>
+<h2 id="5-注解开发进行CRUD操作"><a href="#5-注解开发进行CRUD操作" class="headerlink" title="5. 注解开发进行CRUD操作"></a>5. 注解开发进行CRUD操作</h2><h3 id="5-1-在接口IUserDao-java进行注解开发"><a href="#5-1-在接口IUserDao-java进行注解开发" class="headerlink" title="5.1 在接口IUserDao.java进行注解开发"></a>5.1 在接口IUserDao.java进行注解开发</h3><p>在接口IUserDao.java进行注解开发,包含CRUD等操作</p>
+<pre><code class="java">package com.itheima.dao;
+
+import com.itheima.domain.User;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
+
+//在MyBatis中针对CRUD一共有四个注释
+//@Select,@Insert,@Update,,@Delete
+
+public interface IUserDao &amp;#123;
+
+    @Select(&quot;select * from yangzhaohui_user&quot;)
+    List&lt;User&gt; findAll();   //查询所有用户
+
+    @Insert(&quot; insert into yangzhaohui_user(username,birthday,sex,address)values (#&amp;#123;username&amp;#125;,#&amp;#123;birthday&amp;#125;,#&amp;#123;sex&amp;#125;,#&amp;#123;address&amp;#125;)&quot;)
+    void saveUser(User user);   //插入用户
+
+    @Update(&quot;update yangzhaohui_user set username=#&amp;#123;username&amp;#125;,address=#&amp;#123;address&amp;#125;,sex=#&amp;#123;sex&amp;#125;,birthday=#&amp;#123;birthday&amp;#125; where id=#&amp;#123;id&amp;#125;&quot;)
+    void updateUser(User user);     //更新用户
+
+    @Delete(&quot;delete from yangzhaohui_user where id=#&amp;#123;userId&amp;#125;&quot;)
+    void deleteUser(Integer userId);    //删除用户
+
+    @Select(&quot;select * from yangzhaohui_user where id=#&amp;#123;userId&amp;#125;&quot;)
+    User findById(Integer userId);      //根据id查询一个
+
+    @Select(&quot;select * from yangzhaohui_user where username like #&amp;#123;username&amp;#125;&quot;)
+    List&lt;User&gt; findByName(String username);     //根据用户名模糊查询方法一
+
+    @Select(&quot;select * from yangzhaohui_user where username like &#39;%$&amp;#123;value&amp;#125;%&#39;&quot;)
+    List&lt;User&gt; findByName2(String username);    //根据用户名模糊查询方法二
+
+    @Select(&quot;select count(*) from yangzhaohui_user&quot;)
+    int findTotalUser();            //查询用户总数
+
+&amp;#125;</code></pre>
+<h3 id="5-2-在测试类中进行测试"><a href="#5-2-在测试类中进行测试" class="headerlink" title="5.2 在测试类中进行测试"></a>5.2 在测试类中进行测试</h3><p>在测试类AnnotationCRUDTest.java中进行测试</p>
+<pre><code class="java">public class AnnotationCRUDTest &amp;#123;
+
+    private InputStream inputStream;
+
+    private SqlSessionFactory factory;
+
+    private SqlSession sqlSession;
+
+    private IUserDao userDao;
+
+    @Before
+    public void init()&amp;#123;
+
+        try &amp;#123;
+            inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            factory = builder.build(inputStream);
+
+            sqlSession = factory.openSession();
+
+            userDao=sqlSession.getMapper(IUserDao.class);
+
+        &amp;#125; catch (IOException e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+    &amp;#125;
+
+    @After
+    public void destory() throws Exception&amp;#123;
+        sqlSession.commit();
+        sqlSession.close();
+        inputStream.close();
+    &amp;#125;
+
+    @Test
+    public void testSave()&amp;#123;
+        User user = new User();
+        user.setUsername(&quot;yang&quot;);
+        user.setAddress(&quot;北京市&quot;);
+
+        userDao.saveUser(user);
+    &amp;#125;
+
+    @Test
+    public void testUpdate()&amp;#123;
+
+        User user = new User();
+        user.setId(52);
+        user.setUsername(&quot;yang&quot;);
+        user.setAddress(&quot;北京市海淀区&quot;);
+        user.setSex(&quot;男&quot;);
+        user.setBirthday(new Date());
+
+        userDao.updateUser(user);
+    &amp;#125;
+
+    @Test
+    public void testDelete()&amp;#123;
+        userDao.deleteUser(51);
+    &amp;#125;
+
+    @Test
+    public void testFindById()&amp;#123;     //根据id查询一个
+        User user = userDao.findById(52);
+        System.out.println(user);
+    &amp;#125;
+
+    @Test
+    public void testFindByName()&amp;#123;   //根据用户名模糊查询方法一
+
+        List&lt;User&gt; users = userDao.findByName(&quot;%王%&quot;);
+        for(User user : users)&amp;#123;
+            System.out.println(user);
+        &amp;#125;
+    &amp;#125;
+
+    @Test
+    public void testFindByName2()&amp;#123;  //根据用户名模糊查询方法二
+        List&lt;User&gt; users = userDao.findByName2(&quot;王&quot;);
+        for(User user : users)&amp;#123;
+            System.out.println(user);
+        &amp;#125;
+    &amp;#125;
+
+    @Test
+    public void testFindTotalUser()&amp;#123;    //查询总用户数
+
+        int total = userDao.findTotalUser();
+        System.out.println(total);
+    &amp;#125;
+&amp;#125;
+</code></pre>
+<p>说明: 只有在pom.xml中配置过junit, 才能使用@Test, @Before, @After</p>
+<h3 id="5-3-目录结构"><a href="#5-3-目录结构" class="headerlink" title="5.3 目录结构"></a>5.3 目录结构</h3><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411192721360.png" alt="image-20200411192721360" class="lazyload">
+
+
+
+
+
+<h2 id="6-建立实体类属性和数据库表中列的对应关系"><a href="#6-建立实体类属性和数据库表中列的对应关系" class="headerlink" title="6. 建立实体类属性和数据库表中列的对应关系"></a>6. 建立实体类属性和数据库表中列的对应关系</h2><p>当实体类属性名和数据库表中列的名称不一样的时候, 需要使用注解@Results和@Result 建立两者之间的对应关系</p>
+<p>具体操作如下:</p>
+<h3 id="6-1-实体类"><a href="#6-1-实体类" class="headerlink" title="6.1 实体类"></a>6.1 实体类</h3><p>User.java</p>
+<pre><code class="java">package com.itheima.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class User implements Serializable &amp;#123;
+
+    private Integer userId;
+
+    private String userName;
+
+    private String userAddress;
+
+    private String userSex;
+
+    private Date userBirthday;
+
+    public Integer getUserId() &amp;#123;
+        return userId;
+    &amp;#125;
+
+    public void setUserId(Integer userId) &amp;#123;
+        this.userId = userId;
+    &amp;#125;
+
+    public String getUserName() &amp;#123;
+        return userName;
+    &amp;#125;
+
+    public void setUserName(String userName) &amp;#123;
+        this.userName = userName;
+    &amp;#125;
+
+    public String getUserAddress() &amp;#123;
+        return userAddress;
+    &amp;#125;
+
+    public void setUserAddress(String userAddress) &amp;#123;
+        this.userAddress = userAddress;
+    &amp;#125;
+
+    public String getUserSex() &amp;#123;
+        return userSex;
+    &amp;#125;
+
+    public void setUserSex(String userSex) &amp;#123;
+        this.userSex = userSex;
+    &amp;#125;
+
+    public Date getUserBirthday() &amp;#123;
+        return userBirthday;
+    &amp;#125;
+
+    public void setUserBirthday(Date userBirthday) &amp;#123;
+        this.userBirthday = userBirthday;
+    &amp;#125;
+
+    @Override
+    public String toString() &amp;#123;
+        return &quot;User&amp;#123;&quot; +
+                &quot;userId=&quot; + userId +
+                &quot;, userName=&#39;&quot; + userName + &#39;\&#39;&#39; +
+                &quot;, userAddress=&#39;&quot; + userAddress + &#39;\&#39;&#39; +
+                &quot;, userSex=&#39;&quot; + userSex + &#39;\&#39;&#39; +
+                &quot;, userBirthday=&quot; + userBirthday +
+                &#39;&amp;#125;&#39;;
+    &amp;#125;
+&amp;#125;</code></pre>
+<h3 id="6-2-数据库表"><a href="#6-2-数据库表" class="headerlink" title="6.2 数据库表"></a>6.2 数据库表</h3><p>数据库表截图:</p>
+<img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411195541014.png" alt="image-20200411195541014" class="lazyload">
+
+<h3 id="6-3-实体类对应接口"><a href="#6-3-实体类对应接口" class="headerlink" title="6.3 实体类对应接口"></a>6.3 实体类对应接口</h3><p>实体类对应接口 IUsrDao.java , 在该接口中进行注解开发</p>
+<p>IUserDao.java</p>
+<pre><code class="java">package com.itheima.dao;
+
+import com.itheima.domain.User;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+
+//在MyBatis中针对CRUD一共有四个注释
+//@Select,@Insert,@Update,,@Delete
+
+public interface IUserDao &amp;#123;
+
+    @Select(&quot;select * from yangzhaohui_user&quot;)
+    @Results(id=&quot;userMap&quot; ,value = &amp;#123;
+            @Result(id=true,column = &quot;id&quot;,property = &quot;userId&quot;),
+            @Result(column = &quot;username&quot;,property = &quot;userName&quot;),
+            @Result(column = &quot;sex&quot;,property = &quot;userSex&quot;),
+            @Result(column = &quot;address&quot;,property = &quot;userAddress&quot;),
+            @Result(column = &quot;birthday&quot;,property = &quot;userBirthday&quot;)
+    &amp;#125;)
+    List&lt;User&gt; findAll();   //查询所有用户
+
+    @Select(&quot;select * from yangzhaohui_user where id=#&amp;#123;userId&amp;#125;&quot;)
+    @ResultMap(value = &amp;#123;&quot;userMap&quot;&amp;#125;)
+    User findById(Integer userId);      //根据id查询一个
+
+    @Select(&quot;select * from yangzhaohui_user where username like #&amp;#123;username&amp;#125;&quot;)
+    @ResultMap(value = &quot;userMap&quot;)
+    List&lt;User&gt; findByName(String username);     //根据用户名模糊查询方法一
+
+&amp;#125;
+</code></pre>
+<h3 id="6-4-测试类"><a href="#6-4-测试类" class="headerlink" title="6.4 测试类"></a>6.4 测试类</h3><p>AnnotationCRUDTest.java</p>
+<pre><code class="java">public class AnnotationCRUDTest &amp;#123;
+
+    private InputStream inputStream;
+
+    private SqlSessionFactory factory;
+
+    private SqlSession sqlSession;
+
+    private IUserDao userDao;
+
+    @Before
+    public void init()&amp;#123;
+
+        try &amp;#123;
+            inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            factory = builder.build(inputStream);
+
+            sqlSession = factory.openSession();
+
+            userDao=sqlSession.getMapper(IUserDao.class);
+
+        &amp;#125; catch (IOException e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+    &amp;#125;
+
+    @After
+    public void destory() throws Exception&amp;#123;
+        sqlSession.commit();
+        sqlSession.close();
+        inputStream.close();
+    &amp;#125;
+
+
+    @Test
+    public void testFindById()&amp;#123;     //根据id查询一个
+        User user = userDao.findById(52);
+        System.out.println(user);
+    &amp;#125;
+
+    @Test
+    public void testFindByName()&amp;#123;   //根据用户名模糊查询方法一
+
+        List&lt;User&gt; users = userDao.findByName(&quot;%王%&quot;);
+        for(User user : users)&amp;#123;
+            System.out.println(user);
+        &amp;#125;
+    &amp;#125;
+
+&amp;#125;
+</code></pre>
+<h3 id="6-5-目录结构"><a href="#6-5-目录结构" class="headerlink" title="6.5 目录结构"></a>6.5 目录结构</h3><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411195910802.png" alt="image-20200411195910802" class="lazyload">
+
+
+
+<h2 id="7-注解开发进行多表查询"><a href="#7-注解开发进行多表查询" class="headerlink" title="7. 注解开发进行多表查询"></a>7. 注解开发进行多表查询</h2><h3 id="7-1-注解开发进行一对一查询配置"><a href="#7-1-注解开发进行一对一查询配置" class="headerlink" title="7.1 注解开发进行一对一查询配置"></a>7.1 注解开发进行一对一查询配置</h3><p>一个账户只属于一个用户,</p>
+<h4 id="7-1-1-账户类"><a href="#7-1-1-账户类" class="headerlink" title="7.1.1 账户类"></a>7.1.1 账户类</h4><p>Account.java</p>
+<pre><code class="java">public class Account implements Serializable &amp;#123;
+
+    private Integer id;
+
+    private Integer uid;
+
+    private Double money;
+
+    //建立多对一(mybatis中称之为一对一的映射),一个账户只能属于一个用户
+
+    private User user;
+
+    public User getUser() &amp;#123;
+        return user;
+    &amp;#125;
+
+    public void setUser(User user) &amp;#123;
+        this.user = user;
+    &amp;#125;
+
+    public Integer getId() &amp;#123;
+        return id;
+    &amp;#125;
+
+    public void setId(Integer id) &amp;#123;
+        this.id = id;
+    &amp;#125;
+
+    public Integer getUid() &amp;#123;
+        return uid;
+    &amp;#125;
+
+    public void setUid(Integer uid) &amp;#123;
+        this.uid = uid;
+    &amp;#125;
+
+    public Double getMoney() &amp;#123;
+        return money;
+    &amp;#125;
+
+    public void setMoney(Double money) &amp;#123;
+        this.money = money;
+    &amp;#125;
+
+    @Override
+    public String toString() &amp;#123;
+        return &quot;Account&amp;#123;&quot; +
+                &quot;id=&quot; + id +
+                &quot;, uid=&quot; + uid +
+                &quot;, money=&quot; + money +
+                &#39;&amp;#125;&#39;;
+    &amp;#125;
+&amp;#125;
+</code></pre>
+<h4 id="7-1-2-账户类对应接口"><a href="#7-1-2-账户类对应接口" class="headerlink" title="7.1.2 账户类对应接口"></a>7.1.2 账户类对应接口</h4><p>IAccountDao.java</p>
+<pre><code class="java">package com.itheima.dao;
+
+import com.itheima.domain.Account;
+import com.itheima.domain.User;
+import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.mapping.FetchType;
+
+import java.util.List;
+
+public interface IAccountDao &amp;#123;
+
+    @Select(&quot;select * from yangzhaohui_account&quot;)
+    @Results(id = &quot;accountMap&quot;,value = &amp;#123;
+            @Result(id = true, column = &quot;id&quot;,property = &quot;id&quot;),
+            @Result(column = &quot;uid&quot;,property = &quot;uid&quot;),
+            @Result(column = &quot;money&quot;,property = &quot;money&quot;),
+            @Result(property = &quot;user&quot;,column = &quot;uid&quot;,javaType = User.class,one = @One(select = &quot;com.itheima.dao.IUserDao.findById&quot;,fetchType = FetchType.DEFAULT))
+    &amp;#125;)
+    //查询账户时,同时得到该账户所属用户信息
+    List&lt;Account&gt; findAll();
+&amp;#125;</code></pre>
+<p>说明: 可以按住Ctrl键,鼠标点击进入 Results, Result, One所在类查看 , 从而确定参数</p>
+<h4 id="7-1-3-测试类"><a href="#7-1-3-测试类" class="headerlink" title="7.1.3 测试类"></a>7.1.3 测试类</h4><p>AccountTest.java</p>
+<pre><code class="java">public class AccountTest &amp;#123;
+
+    private InputStream inputStream;
+
+    private SqlSessionFactory factory;
+
+    private SqlSession sqlSession;
+
+    private IAccountDao accountDao;
+
+    @Before
+    public void init()&amp;#123;
+
+        try &amp;#123;
+            inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            factory = builder.build(inputStream);
+
+            sqlSession = factory.openSession();
+
+            accountDao=sqlSession.getMapper(IAccountDao.class);
+
+        &amp;#125; catch (IOException e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+    &amp;#125;
+
+    @After
+    public void destory() throws Exception&amp;#123;
+        sqlSession.commit();
+        sqlSession.close();
+        inputStream.close();
+    &amp;#125;
+
+
+    @Test
+    public void testFindAll()&amp;#123;
+
+        List&lt;Account&gt; accounts = accountDao.findAll();
+        for (Account account : accounts)&amp;#123;
+            System.out.println(&quot;每个账户信息:&quot;);
+            System.out.println(account);
+            System.out.println(account.getUser());
+        &amp;#125;
+    &amp;#125;
+&amp;#125;</code></pre>
+<h4 id="7-1-4-目录结构"><a href="#7-1-4-目录结构" class="headerlink" title="7.1.4 目录结构"></a>7.1.4 目录结构</h4><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411204123590.png" alt="image-20200411204123590" class="lazyload">
+
+<h3 id="7-2-注解开发进行一对多查询配置"><a href="#7-2-注解开发进行一对多查询配置" class="headerlink" title="7.2 注解开发进行一对多查询配置"></a>7.2 注解开发进行一对多查询配置</h3><h4 id="7-2-1-用户类"><a href="#7-2-1-用户类" class="headerlink" title="7.2.1 用户类"></a>7.2.1 用户类</h4><p>User.java</p>
+<pre><code class="java">public class User implements Serializable &amp;#123;
+
+    private Integer userId;
+
+    private String userName;
+
+    private String userAddress;
+
+    private String userSex;
+
+    private Date userBirthday;
+
+    //配置一对多关系映射, 一个用户拥有多个账户
+    private List&lt;Account&gt; accounts;
+
+    public List&lt;Account&gt; getAccounts() &amp;#123;
+        return accounts;
+    &amp;#125;
+
+    public void setAccounts(List&lt;Account&gt; accounts) &amp;#123;
+        this.accounts = accounts;
+    &amp;#125;
+
+    public Integer getUserId() &amp;#123;
+        return userId;
+    &amp;#125;
+
+    public void setUserId(Integer userId) &amp;#123;
+        this.userId = userId;
+    &amp;#125;
+
+    public String getUserName() &amp;#123;
+        return userName;
+    &amp;#125;
+
+    public void setUserName(String userName) &amp;#123;
+        this.userName = userName;
+    &amp;#125;
+
+    public String getUserAddress() &amp;#123;
+        return userAddress;
+    &amp;#125;
+
+    public void setUserAddress(String userAddress) &amp;#123;
+        this.userAddress = userAddress;
+    &amp;#125;
+
+    public String getUserSex() &amp;#123;
+        return userSex;
+    &amp;#125;
+
+    public void setUserSex(String userSex) &amp;#123;
+        this.userSex = userSex;
+    &amp;#125;
+
+    public Date getUserBirthday() &amp;#123;
+        return userBirthday;
+    &amp;#125;
+
+    public void setUserBirthday(Date userBirthday) &amp;#123;
+        this.userBirthday = userBirthday;
+    &amp;#125;
+
+    @Override
+    public String toString() &amp;#123;
+        return &quot;User&amp;#123;&quot; +
+                &quot;userId=&quot; + userId +
+                &quot;, userName=&#39;&quot; + userName + &#39;\&#39;&#39; +
+                &quot;, userAddress=&#39;&quot; + userAddress + &#39;\&#39;&#39; +
+                &quot;, userSex=&#39;&quot; + userSex + &#39;\&#39;&#39; +
+                &quot;, userBirthday=&quot; + userBirthday +
+                &#39;&amp;#125;&#39;;
+    &amp;#125;
+&amp;#125;
+</code></pre>
+<p>7.2.2 用户类对应接口</p>
+<p>用户类对应接口IUserDao.java , 在IUserDao中进行一对多查询配置</p>
+<p>IUserDao.java</p>
+<pre><code class="java">public interface IUserDao &amp;#123;
+
+    @Select(&quot;select * from yangzhaohui_user&quot;)
+    @Results(id=&quot;userMap&quot; ,value = &amp;#123;
+            @Result(id=true,column = &quot;id&quot;,property = &quot;userId&quot;),
+            @Result(column = &quot;username&quot;,property = &quot;userName&quot;),
+            @Result(column = &quot;sex&quot;,property = &quot;userSex&quot;),
+            @Result(column = &quot;address&quot;,property = &quot;userAddress&quot;),
+            @Result(column = &quot;birthday&quot;,property = &quot;userBirthday&quot;),
+            @Result(property = &quot;accounts&quot;,column = &quot;id&quot;,
+                    many = @Many(select = &quot;com.itheima.dao.IAccountDao.findAccountByUid&quot;,fetchType = FetchType.LAZY))
+    &amp;#125;)
+    List&lt;User&gt; findAll();   //查询所有用户
+
+    @Select(&quot;select * from yangzhaohui_user where id=#&amp;#123;userId&amp;#125;&quot;)
+    @ResultMap(value = &amp;#123;&quot;userMap&quot;&amp;#125;)
+    User findById(Integer userId);      //根据id查询一个
+
+    @Select(&quot;select * from yangzhaohui_user where username like #&amp;#123;username&amp;#125;&quot;)
+    @ResultMap(value = &quot;userMap&quot;)
+    List&lt;User&gt; findByName(String username);     //根据用户名模糊查询方法一
+
+&amp;#125;
+</code></pre>
+<p>7.2.3 测试类</p>
+<p>AnnotationCRUDTest.java</p>
+<pre><code class="java">public class AnnotationCRUDTest &amp;#123;
+
+    private InputStream inputStream;
+
+    private SqlSessionFactory factory;
+
+    private SqlSession sqlSession;
+
+    private IUserDao userDao;
+
+    @Before
+    public void init()&amp;#123;
+
+        try &amp;#123;
+            inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            factory = builder.build(inputStream);
+
+            sqlSession = factory.openSession();
+
+            userDao=sqlSession.getMapper(IUserDao.class);
+
+        &amp;#125; catch (IOException e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+    &amp;#125;
+
+    @After
+    public void destory() throws Exception&amp;#123;
+        sqlSession.commit();
+        sqlSession.close();
+        inputStream.close();
+    &amp;#125;
+
+    @Test
+    public void testFindAll()&amp;#123;
+        List&lt;User&gt; users = userDao.findAll();
+        for(User user : users)&amp;#123;
+            System.out.println(&quot;每个用户信息:&quot;);
+            System.out.println(user);
+            System.out.println(user.getAccounts());
+        &amp;#125;
+    &amp;#125;
+
+
+&amp;#125;</code></pre>
+<h4 id="7-2-4-目录结构"><a href="#7-2-4-目录结构" class="headerlink" title="7.2.4 目录结构"></a>7.2.4 目录结构</h4><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411210246670.png" alt="image-20200411210246670" class="lazyload">
+
+<h2 id="8-注解开发使用二级缓存"><a href="#8-注解开发使用二级缓存" class="headerlink" title="8. 注解开发使用二级缓存"></a>8. 注解开发使用二级缓存</h2><h3 id="8-1-在主配置文件中进行缓存的全局配置"><a href="#8-1-在主配置文件中进行缓存的全局配置" class="headerlink" title="8.1 在主配置文件中进行缓存的全局配置"></a>8.1 在主配置文件中进行缓存的全局配置</h3><p>在SqlMapConfig.xml中全局开启缓存</p>
+<p>SqlMapConfig.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+
+&lt;configuration&gt;
+
+    &lt;!--引入外部配置文件--&gt;
+    &lt;properties resource=&quot;jdbcConfig.properties&quot;&gt;&lt;/properties&gt;
+
+    &lt;!--全局开启缓存--&gt;
+    &lt;settings&gt;
+        &lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;/settings&gt;
+
+    &lt;!--配置别名--&gt;
+    &lt;typeAliases&gt;
+        &lt;package name=&quot;com.itheima.domain&quot;&gt;&lt;/package&gt;
+    &lt;/typeAliases&gt;
+
+    &lt;!--配置环境--&gt;
+    &lt;environments default=&quot;mysql&quot;&gt;
+        &lt;environment id=&quot;mysql&quot;&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+            &lt;dataSource type=&quot;POOLED&quot;&gt;
+
+                &lt;property name=&quot;driver&quot; value=&quot;$&amp;#123;driver&amp;#125;&quot;/&gt;
+                &lt;property name=&quot;url&quot; value=&quot;$&amp;#123;url&amp;#125;&quot;/&gt;
+                &lt;property name=&quot;username&quot; value=&quot;$&amp;#123;username&amp;#125;&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;$&amp;#123;password&amp;#125;&quot;/&gt;
+
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+
+    &lt;!--指定带有注解的dao接口所在位置--&gt;
+    &lt;mappers&gt;
+        &lt;package name=&quot;com.itheima.dao&quot;&gt;&lt;/package&gt;
+    &lt;/mappers&gt;
+
+&lt;/configuration&gt;</code></pre>
+<h3 id="8-2-在接口文件中开启缓存"><a href="#8-2-在接口文件中开启缓存" class="headerlink" title="8.2 在接口文件中开启缓存"></a>8.2 在接口文件中开启缓存</h3><p> 在User类所对应的接口文件IUserDao中使用注解@CacheNamespace开启缓存</p>
+<p>IUserDao.java</p>
+<pre><code class="java"> package com.itheima.dao;
+
+import com.itheima.domain.User;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
+
+import java.util.List;
+
+//在MyBatis中针对CRUD一共有四个注释
+//@Select,@Insert,@Update,,@Delete
+
+@CacheNamespace(blocking = true)
+public interface IUserDao &amp;#123;
+
+    @Select(&quot;select * from yangzhaohui_user&quot;)
+    @Results(id=&quot;userMap&quot; ,value = &amp;#123;
+            @Result(id=true,column = &quot;id&quot;,property = &quot;userId&quot;),
+            @Result(column = &quot;username&quot;,property = &quot;userName&quot;),
+            @Result(column = &quot;sex&quot;,property = &quot;userSex&quot;),
+            @Result(column = &quot;address&quot;,property = &quot;userAddress&quot;),
+            @Result(column = &quot;birthday&quot;,property = &quot;userBirthday&quot;),
+            @Result(property = &quot;accounts&quot;,column = &quot;id&quot;,
+                    many = @Many(select = &quot;com.itheima.dao.IAccountDao.findAccountByUid&quot;,fetchType = FetchType.LAZY))
+    &amp;#125;)
+    List&lt;User&gt; findAll();   //查询所有用户
+
+    @Select(&quot;select * from yangzhaohui_user where id=#&amp;#123;userId&amp;#125;&quot;)
+    @ResultMap(value = &amp;#123;&quot;userMap&quot;&amp;#125;)
+    User findById(Integer userId);      //根据id查询一个
+
+    @Select(&quot;select * from yangzhaohui_user where username like #&amp;#123;username&amp;#125;&quot;)
+    @ResultMap(value = &quot;userMap&quot;)
+    List&lt;User&gt; findByName(String username);     //根据用户名模糊查询方法一
+
+&amp;#125;
+</code></pre>
+<p>说明: 注解@CacheNamespace中blocking默认是false,表示不使用二级缓存, 需要将其设置成true</p>
+<h3 id="8-3-测试类"><a href="#8-3-测试类" class="headerlink" title="8.3 测试类"></a>8.3 测试类</h3><p>SecondLevelCacheTest.java</p>
+<pre><code class="java">public class SecondLevelCacheTest &amp;#123;
+
+    private InputStream inputStream;
+
+    private SqlSessionFactory factory;
+
+    @Before
+    public void init()&amp;#123;
+
+        try &amp;#123;
+            inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            factory = builder.build(inputStream);
+
+        &amp;#125; catch (IOException e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+    &amp;#125;
+
+    @After
+    public void destory() throws Exception&amp;#123;
+        inputStream.close();
+    &amp;#125;
+
+    @Test
+    public void testFindById()&amp;#123;     //根据id查询一个
+
+        SqlSession  sqlSession = factory.openSession();
+        IUserDao  userDao=sqlSession.getMapper(IUserDao.class);
+        User user = userDao.findById(52);
+        System.out.println(user);
+
+        sqlSession.close();
+
+        SqlSession sqlSession1=factory.openSession();
+        IUserDao userDao1=sqlSession1.getMapper(IUserDao.class);
+        User user2 = userDao1.findById(52);
+        System.out.println(user2);
+        System.out.println(user == user2);
+
+        sqlSession1.close();
+    &amp;#125;
+&amp;#125;</code></pre>
+<h3 id="8-4-运行结果"><a href="#8-4-运行结果" class="headerlink" title="8.4 运行结果"></a>8.4 运行结果</h3><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411215557453.png" alt="image-20200411215557453" class="lazyload">
+
+
+
+<h3 id="8-5-目录结构"><a href="#8-5-目录结构" class="headerlink" title="8.5 目录结构"></a>8.5 目录结构</h3><img data-sizes="auto" data-src="MyBatis注解开发.assets/image-20200411215649160.png" alt="image-20200411215649160" class="lazyload">
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>CloudInWind<br>
+    <strong>本文链接：</strong><a href="http://yoursite.com/2020/04/11/MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/" title="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;11&#x2F;MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;11&#x2F;MyBatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Java%E5%BC%80%E5%8F%91/">Java开发</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Java/" rel="tag">Java</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/MyBatis/" rel="tag">MyBatis</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+<script src="/js/app.js?v=1597147159866"></script>
+  
+
+
+
+
+
+</body>
+
+</html>
