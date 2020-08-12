@@ -29,7 +29,7 @@
 <meta name="twitter:image" content="https://s1.ax1x.com/2020/08/10/aHYvqO.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css?v=233" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1597150369718">
+  <link rel="stylesheet" href="/css/style.css?v=1597201084624">
 <meta name="generator" content="Hexo 5.0.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -296,19 +296,19 @@
 
   <div class="nexmoe-post-footer">
     <section class="nexmoe-comment">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
-<div id="gitalk"></div>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '80b2453b6d5f37ad6225',
-        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
-        id: window.location.pathname,
-        repo: 'nexmoe.github.io',
-        owner: 'nexmoe',
-        admin: 'nexmoe'
-    })
-    gitalk.render('gitalk')
+    <div id="gitment"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'cloudinwind', // 你的 GitHub ID
+    repo: 'cloudinwind.github.io', // 存储评论的 repo
+    oauth: {
+        client_id: '0c567eef9b82f88f97e9', // 你的 client ID
+        client_secret: 'cac25eb960017e2969dee870b97cd0f320d0cbaa' // 你的 client secret
+    },
+})
+gitment.render('gitment')
 </script>
 </section>
   </div>
@@ -322,7 +322,7 @@
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
-<script src="/js/app.js?v=1597150369720"></script>
+<script src="/js/app.js?v=1597201084627"></script>
   
 
 
