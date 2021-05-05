@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>Spring开发 - Blog</title>
+  <title>1.3 整数二分 - Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="技术笔记,人生感悟">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,22 +12,26 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="添加简介: 在首页显示">
+  <meta name="description" content="ACWing，数的范围">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring开发">
-<meta property="og:url" content="http://cloudinwind.cn/2020/08/10/Spring%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:title" content="1.3 整数二分">
+<meta property="og:url" content="http://cloudinwind.cn/2021/05/05/%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="添加简介: 在首页显示">
+<meta property="og:description" content="ACWing，数的范围">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-10T02:31:30.000Z">
-<meta property="article:modified_time" content="2021-05-04T14:05:11.749Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/05/gK8Q58.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/05/gK8fIK.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/05/gK8Gvj.png">
+<meta property="article:published_time" content="2021-05-05T05:43:30.000Z">
+<meta property="article:modified_time" content="2021-05-05T05:44:05.012Z">
 <meta property="article:author" content="CloudInWind">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="ACWing">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/05/05/gK8Q58.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css?v=233" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1620193483666">
+  <link rel="stylesheet" href="/css/style.css?v=1620193483655">
 <meta name="generator" content="Hexo 5.0.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -191,15 +195,15 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover" style="padding-bottom: 62.5%;"> 
-          <img data-src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3355018414,1184144917&fm=26&gp=0.jpg" data-sizes="auto" alt="Spring开发" class="lazyload">
-          <h1>Spring开发</h1>
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3213207264,1556792350&fm=26&gp=0.jpg" data-sizes="auto" alt="1.3 整数二分" class="lazyload">
+          <h1>1.3 整数二分</h1>
       </div>
   
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月10日</a>
-    <a><i class="nexmoefont icon-areachart"></i>756 字</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年05月05日</a>
+    <a><i class="nexmoefont icon-areachart"></i>759 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
 </div>
 
@@ -208,45 +212,122 @@
   </div>
 
   <article>
-    <p>添加简介: 在首页显示</p>
+    <p>ACWing，数的范围</p>
 <a id="more"></a>
 
-<h2 id="1-Spring的概述"><a href="#1-Spring的概述" class="headerlink" title="1. Spring的概述"></a>1. Spring的概述</h2><h3 id="1-1-Spring是什么"><a href="#1-1-Spring是什么" class="headerlink" title="1.1 Spring是什么?"></a>1.1 Spring是什么?</h3><pre><code>Spring 是分层的 Java SE/EE 应用 **full-stack** 轻量级开源框架，以 **IoC（Inverse Of Control： 反转控制）**和 **AOP（Aspect Oriented Programming：面向切面编程）**为内核，提供了展现层 Spring MVC 和持久层 Spring JDBC 以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为**使用最多**的 Java EE 企业应用开源框架。</code></pre>
-<h3 id="1-2-Spring的两大核心"><a href="#1-2-Spring的两大核心" class="headerlink" title="1.2 Spring的两大核心"></a>1.2 Spring的两大核心</h3><h3 id="1-3-Spring的-发展历程和优势"><a href="#1-3-Spring的-发展历程和优势" class="headerlink" title="1.3 Spring的 发展历程和优势"></a>1.3 Spring的 发展历程和优势</h3><h4 id="1-3-1-Spring的发展历程"><a href="#1-3-1-Spring的发展历程" class="headerlink" title="1.3.1 Spring的发展历程"></a>1.3.1 Spring的发展历程</h4><p>1997 年 IBM 提出了 EJB 的思想 </p>
-<p>1998 年，SUN 制定开发标准规范 EJB1.0 </p>
-<p>1999 年，EJB1.1 发布 2001 年，EJB2.0 发布 </p>
-<p>2003 年，EJB2.1 发布 2006 年，EJB3.0 发布 </p>
-<p><strong>Rod Johnson（spring 之父）</strong> </p>
-<pre><code>    Expert One-to-One J2EE Design and Development(2002) 
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个按照升序排列的长度为 n 的整数数组，以及 q 个查询。</p>
+<p>对于每个查询，返回一个元素 k 的起始位置和终止位置（位置从 0 开始计数）。</p>
+<p>如果数组中不存在该元素，则返回 -1 -1。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
+<p>第二行包含 n 个整数（均在 1∼10000 范围内），表示完整数组。</p>
+<p>接下来 q 行，每行包含一个整数 k，表示一个询问元素。</p>
+<p><strong>输出格式</strong></p>
+<p>共 q 行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
+<p>如果数组中不存在该元素，则返回 -1 -1。</p>
+<p><strong>数据范围</strong><br>$$<br>1≤n≤100000<br>1≤q≤10000<br>1≤k≤10000<br>$$</p>
+<p><strong>输入样例：</strong></p>
+<pre><code>6 3
+1 2 2 3 3 4
+3
+4
+5</code></pre>
+<p><strong>输出样例：</strong></p>
+<pre><code>3 4
+5 5
+-1 -1</code></pre>
+<hr>
+<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><p>整数二分</p>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>$O(1)$</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><h2 id=""><a href="#" class="headerlink" title=" "></a><img src="https://z3.ax1x.com/2021/05/05/gK8Q58.png"> </h2><h2 id="-1"><a href="#-1" class="headerlink" title=" "></a><img src="https://z3.ax1x.com/2021/05/05/gK8fIK.png"> </h2><p><img src="https://z3.ax1x.com/2021/05/05/gK8Gvj.png"> </p>
+<h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><pre><code>#include&lt;iostream&gt;
+using namespace std;
 
-    阐述了 J2EE 使用 EJB 开发设计的优点及解决方案 
+const int N = 100010;
+int n, k;
+int q[N];
 
-    Expert One-to-One J2EE Development without EJB(2004) 
+int main()&amp;#123;
 
-    阐述了 J2EE 开发不使用 EJB 的解决方式（Spring 雏形） </code></pre>
-<p><strong>2017 年 9 月份发布了 spring 的最新版本 spring 5.0 通用版（GA）</strong> </p>
-<h4 id="1-3-2-Spring的优势"><a href="#1-3-2-Spring的优势" class="headerlink" title="1.3.2 Spring的优势"></a>1.3.2 Spring的优势</h4><p><strong>方便解耦，简化开发</strong></p>
-<p>通过 Spring 提供的 IoC 容器，可以将对象间的依赖关系交由 Spring 进行控制，避免硬编码所造 成的过度程序耦合。用户也不必再为单例模式类、属性文件解析等这些很底层的需求编写代码，可 以更专注于上层的应用。 </p>
-<p><strong>AOP 编程的支持</strong> </p>
-<p>通过 Spring 的 AOP 功能，方便进行面向切面的编程，许多不容易用传统 OOP 实现的功能可以 传智播客——专注于 Java、.Net 和 Php、网页平面设计工程师的培训 北京市昌平区建材城西路金燕龙办公楼一层 电话：400-618-9090 通过 AOP 轻松应付。</p>
-<p><strong>声明式事务的支持</strong></p>
-<p>可以将我们从单调烦闷的事务管理代码中解脱出来，通过声明式方式灵活的进行事务的管理， 提高开发效率和质量。 </p>
-<p><strong>方便程序的测试</strong> </p>
-<p>可以用非容器依赖的编程方式进行几乎所有的测试工作，测试不再是昂贵的操作，而是随手可 做的事情。 </p>
-<p><strong>方便集成各种优秀框架</strong> </p>
-<p>Spring 可以降低各种框架的使用难度，提供了对各种优秀框架（Struts、Hibernate、Hessian、Quartz 等）的直接支持。 </p>
-<p><strong>降低 JavaEE API 的使用难度</strong> </p>
-<p>Spring 对 JavaEE API（如 JDBC、JavaMail、远程调用等）进行了薄薄的封装层，使这些 API 的 使用难度大为降低。 </p>
-<p><strong>Java 源码是经典学习范例</strong> </p>
-<p>Spring 的源代码设计精妙、结构清晰、匠心独用，处处体现着大师对 Java 设计模式灵活运用以 及对 Java 技术的高深造诣。它的源代码无意是 Java 技术的最佳实践的范例。</p>
-<h3 id="1-4-Spring体系结构"><a href="#1-4-Spring体系结构" class="headerlink" title="1.4 Spring体系结构"></a>1.4 Spring体系结构</h3>
+    scanf(&quot;%d%d&quot;, &amp;n,&amp;k);
+    for(int i=0;i&lt;n;i++) scanf(&quot;%d&quot;, &amp;q[i]);
+
+    // 判断一个元素的起始位置和终止位置，可以以此作为两个边界点用两个性质将数列分成两个部分
+    // 起始位置作为边界：则右边的数都大于等于该数，相当于找大于等于该数的边界点   模板二
+    // 终止位置作为边界点：则左边的数都小于等于该数，相当于找小于等于该数的边界点 模板一
+    int l,r;
+    while(k--)&amp;#123;
+        int x;
+        scanf(&quot;%d&quot;, &amp;x);
+        // 起始点
+        l=0, r=n-1;     // 此处必须重新定义l,r的值
+        while(l&lt;r)&amp;#123;
+            int mid= (l + r) / 2;
+            if(q[mid]&gt;=x) r=mid;
+            else l=mid+1;
+        &amp;#125;
+         if(q[l]!=x) cout&lt;&lt;&quot;-1 -1&quot;&lt;&lt;endl;
+         else &amp;#123;
+             cout&lt;&lt;l&lt;&lt;&quot; &quot;;
+             // 终止点
+             l=0,r=n-1;
+             while(l&lt;r)&amp;#123;
+                 int mid=(l+r+1)/2;
+                 if(q[mid]&lt;=x) l=mid;
+                 else r=mid-1;
+             &amp;#125;
+             cout&lt;&lt;l&lt;&lt;endl;
+         &amp;#125;
+    &amp;#125;
+&amp;#125;</code></pre>
+<hr>
+<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><p>暴力枚举</p>
+<h4 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p><strong>此时会超时</strong><br>$$O(n)$$</p>
+<h4 id="C-代码-1"><a href="#C-代码-1" class="headerlink" title="C++ 代码"></a>C++ 代码</h4><pre><code>#include&lt;iostream&gt;
+using namespace std;
+
+const int N = 100010;
+int n, k;
+int q[N];
+
+int main()&amp;#123;
+
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
+    for(int i=0;i&lt;n;i++)scanf(&quot;%d&quot;, &amp;q[i]);
+
+    while(k--)&amp;#123;
+        int x;
+        scanf(&quot;%d&quot;, &amp;x);
+        int min=-1,max=-1;
+        for(int i=0;i&lt;n;i++)&amp;#123;
+            if(i==0 &amp;&amp; q[i]==x) min=0;
+            else if(i==n-1 &amp;&amp; q[i]==x) max=n-1;
+            else
+            &amp;#123;
+                if(i!=0 &amp;&amp; i!=n-1)&amp;#123;
+                    if(q[i]==x &amp;&amp; q[i-1]&lt;x) min=i;
+                    if(q[i]==x &amp;&amp; q[i+1]&gt;x) max=i;
+
+                &amp;#125;
+
+            &amp;#125;
+        &amp;#125;
+        if(min==-1 &amp;&amp; max==-1)cout&lt;&lt;&quot;-1 -1&quot;&lt;&lt;endl;
+        else&amp;#123;
+            if(min==-1) min=max;
+            else if(max==-1) max=min;
+            cout&lt;&lt;min&lt;&lt;&quot; &quot;&lt;&lt;max&lt;&lt;endl;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;</code></pre>
+
   </article>
 
   
     
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>CloudInWind<br>
-    <strong>本文链接：</strong><a href="http://cloudinwind.cn/2020/08/10/Spring%E5%BC%80%E5%8F%91/" title="http:&#x2F;&#x2F;cloudinwind.cn&#x2F;2020&#x2F;08&#x2F;10&#x2F;Spring%E5%BC%80%E5%8F%91&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;cloudinwind.cn&#x2F;2020&#x2F;08&#x2F;10&#x2F;Spring%E5%BC%80%E5%8F%91&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="http://cloudinwind.cn/2021/05/05/%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86/" title="http:&#x2F;&#x2F;cloudinwind.cn&#x2F;2021&#x2F;05&#x2F;05&#x2F;%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;cloudinwind.cn&#x2F;2021&#x2F;05&#x2F;05&#x2F;%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86&#x2F;</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -257,10 +338,10 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Java%E5%BC%80%E5%8F%91/">Java开发</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
     
     
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Java/" rel="tag">Java</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Spring/" rel="tag">Spring</a>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/ACWing/" rel="tag">ACWing</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
     
 </div>
 
@@ -288,7 +369,7 @@
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
-<script src="/js/app.js?v=1620193483667"></script>
+<script src="/js/app.js?v=1620193483658"></script>
   
 
 
